@@ -1,0 +1,7 @@
+<h1 class="title">Welcome to Chatter!</h1>
+
+<ul>
+  <%= for room <- @chat_rooms do %>
+    <li class="room"><%= room.name %></li>
+  <% end %>
+</ul>
