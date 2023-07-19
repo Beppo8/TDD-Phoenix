@@ -22,6 +22,7 @@ defmodule ChatterWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
+      import Chatter.Factory
       import ChatterWeb.ConnCase
 
       alias ChatterWeb.Router.Helpers, as: Routes

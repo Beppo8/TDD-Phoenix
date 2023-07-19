@@ -1,8 +1,6 @@
 defmodule ChatterWeb.ChatRoomControllerTest do
   use ChatterWeb.ConnCase, async: true
 
-  import Chatter.Factory
-
   describe "create/2" do
     test "renders new page with errors when data is invalid", %{conn: conn} do
       insert(:chat_room, name: "elixir")
