@@ -2,7 +2,7 @@
 
 <ul>
   <%= for room <- @chat_rooms do %>
-    <li data-role="room"><%= room.name %></li>
+    <li data-role="room"><%= link room.name, to: Routes.chat_room_path(@conn, :show, room) %></li>
   <% end %>
 </ul>
 
