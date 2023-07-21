@@ -8,10 +8,18 @@ defmodule ChatterWeb.ChatRoomControllerTest do
 
       response =
         conn
+        |> sign_in()
         |> post(Routes.chat_room_path(conn, :create), %{"room" => params})
         |> html_response(200)
 
       assert response =~ "has already been taken"
     end
+  end
+
+  def sign_in(conn) do
+    user = build(:user) |> set_password("password") |> insert()
+    conn
+    |> Plug.Test.init_test_session(%{})
+    |> Doorman.Login.Session.login(user)
   end
 end

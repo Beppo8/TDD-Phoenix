@@ -4,8 +4,11 @@ defmodule ChatterWeb.UserCreatesNewChatRoomTest do
 
 
   test "user creates a new chat room successfully", %{session: session} do
+    user = build(:user) |> set_password("superpass") |> insert()
+
     session
-    |> visit(rooms_index())
+    |> visit("/")
+    |> sign_in(as: user)
     |> click(new_chat_link())
     |> create_chat_room(name: "elixir")
     |> assert_has(room_title("elixir"))

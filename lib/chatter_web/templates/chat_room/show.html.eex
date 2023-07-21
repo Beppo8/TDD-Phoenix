@@ -1,6 +1,4 @@
-<%= content_tag(:h1, id: "title", data: [role: "room-title", chat_room_name: @chat_room.name]) do %>
-   <%= @chat_room.name %>
-<% end %>
+
 
 <form id="new-message-form">
   <label>

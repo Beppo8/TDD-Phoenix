@@ -1,13 +1,15 @@
-defmodule ChatterWeb.UserVisitsHomepageTest do
+defmodule ChatterWeb.Features.UserVisitsRoomsPageTest do
   use ChatterWeb.FeatureCase, async: true
 
-  test "user can visit homepage", %{session: session} do
+  test "user visits rooms page to see a list of rooms", %{session: session} do
+    [room1, room2] = insert_pair(:chat_room)
     user = build(:user) |> set_password("password") |> insert()
 
     session
-    |> visit("/")
+    |> visit(rooms_index())
     |> sign_in(as: user)
-    |> assert_has(Query.css(".title", text: "Welcome to Chatter!"))
+    |> assert_has(room_name(room1))
+    |> assert_has(room_name(room2))
   end
 
   defp rooms_index, do: Routes.chat_room_path(@endpoint, :index)
