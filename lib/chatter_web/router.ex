@@ -21,6 +21,7 @@ defmodule ChatterWeb.Router do
 
     get "/sign_in", SessionController, :new
     resources "/sessions", SessionController, only: [:create]
+    resources "/users", UserController, only: [:new, :create]
   end
 
   scope "/", ChatterWeb do

@@ -1,9 +1,10 @@
 defmodule ChatterWeb.UserCanChatTest do
-  use ChatterWeb.FeatureCase, async:
-   @moduledoc """
-    We create two user sessions, and they each join the same chat room. One user comments first.
-    The second user sees the message and responds. The first user then sees the response.
-   """
+  use ChatterWeb.FeatureCase,
+    async:
+      @moduledoc("""
+       We create two user sessions, and they each join the same chat room. One user comments first.
+       The second user sees the message and responds. The first user then sees the response.
+      """)
 
   test "user can chat with other succesfully", %{metadata: metadata} do
     room = insert(:chat_room)

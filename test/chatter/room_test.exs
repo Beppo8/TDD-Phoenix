@@ -13,10 +13,12 @@ defmodule Chatter.RoomTest do
     test "validates that name is unique" do
       insert(:chat_room, name: "elixir")
       params = params_for(:chat_room, name: "elixir")
+
       {:error, changeset} =
         %Room{}
         |> Room.changeset(params)
         |> Repo.insert()
+
       assert "has already been taken" in errors_on(changeset).name
     end
   end
