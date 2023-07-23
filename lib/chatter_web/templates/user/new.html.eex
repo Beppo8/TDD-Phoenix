@@ -1,11 +1,12 @@
 <%= form_for @changeset, Routes.user_path(@conn, :create), fn f -> %>
   <label>
     Email: <%= text_input f, :email %>
+    <%= error_tag f, :email %>
   </label>
 
   <label>
     Password: <%= password_input f, :password %>
-  </label>
+    <%= error_tag f, :password %>  </label>
 
   <%= submit "Sign up" %>
 <% end %>
