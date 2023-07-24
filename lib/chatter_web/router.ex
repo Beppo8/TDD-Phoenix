@@ -10,7 +10,7 @@ defmodule ChatterWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug Doorman.Login.Session
-    plug :put_user_email
+    plug Plugs.PutUserEmail
   end
 
   pipeline :api do
@@ -30,14 +30,6 @@ defmodule ChatterWeb.Router do
 
     resources "/chat_rooms", ChatRoomController, only: [:new, :create, :show]
     get "/", ChatRoomController, :index
-  end
-
-  defp put_user_email(conn, _) do
-    if current_user = conn.assigns[:current_user] do
-      assign(conn, :email, current_user.email)
-    else
-      conn
-    end
   end
 
   # Other scopes may use custom stacks.
