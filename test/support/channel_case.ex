@@ -22,6 +22,7 @@ defmodule ChatterWeb.ChannelCase do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
       import ChatterWeb.ChannelCase
+      import Chatter.Factory
 
       # The default endpoint for testing
       @endpoint ChatterWeb.Endpoint

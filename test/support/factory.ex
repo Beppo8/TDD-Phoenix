@@ -14,4 +14,12 @@ defmodule Chatter.Factory do
     |> Doorman.Auth.Secret.put_session_secret()
     |> Ecto.Changeset.apply_changes()
   end
+
+  def chat_room_message_factory do
+    %Chatter.Chat.Room.Message{
+      body: sequence(:body, &"hello there #{&1}"),
+      author: sequence(:email, &"user#{&1}@example.com"),
+      chat_room: build(:chat_room)
+    }
+  end
 end
