@@ -3,17 +3,19 @@ defmodule ChatterWeb.ChatRoomChannelTest do
 
   describe "new_message event" do
     test "broadcasts message to all users" do
-      {:ok, _, socket} = join_channel("chat_room:general")
+      email = "random@example.com"
+      {:ok, _, socket} = join_channel("chat_room:general", as: email)
       payload = %{"body" => "hello world!"}
 
       push(socket, "new_message", payload)
 
-      assert_broadcast "new_message", ^payload
+      expected_payload = Map.put(payload, "author", email)
+      assert_broadcast "new_message", ^expected_payload
     end
 
-    defp join_channel(topic) do
+    defp join_channel(topic, as: email) do
       ChatterWeb.UserSocket
-      |> socket("", %{})
+      |> socket("", %{email: email})
       |> subscribe_and_join(ChatterWeb.ChatRoomChannel, topic)
     end
   end
